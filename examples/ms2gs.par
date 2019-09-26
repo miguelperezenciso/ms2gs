@@ -1,0 +1,152 @@
+# generic simple parameter file
+! comments can be included as this
+# or as this
+# the command line is
+#   ./ms2gs [-i parfile] [-h|-help] [-o|out outfile] [-ms msfile] [-snp snpfile] [-iter niter] [-seed seed] [-quiet]
+# results are printed to STDOUT
+# sections in ms2gs.par file follow
+
+#NOBLUP    !--> does not perform blup
+#NOCAUSAL  !--> does not perform gblup with causal mutations
+#NOSEQ     !--> does not perform gblup with sequence data
+#NOCHIP    !--> does not perform gblup with snp data
+#NOFIT     !--> does not perform fit analysis
+
+NXVAL     !-->no of xvalidation iterates
+2
+
+PXVAL     !--> % of samples idx1-idx2 deleted for xvalidation
+0.10
+
+IDXVAL    !--> sample ids range to perform xvalidation
+1 150
+
+NITER    !--> no. of iterates, overriden by command line -iter
+1
+
+#MSFILE   !--> file with ms format data
+#ms2gs.ms
+
+MSCOMMAND !--> ms command that can be called from system, overrides MSFILE
+macs 200 100000 -i 2 -t 0.001 -r 0.001 -h 0.01 2>/dev/null | msformatter 2>/dev/null
+
+#PLINKFILE !-->plink file prefix to read genotypes
+#pfile
+
+OUTFILE   !-->outfile prefix
+outfile
+
+PEDFILE   !-->pedfile to carry out gene dropping w/o selection
+ms2gs.ped
+
+#SNPFILE   !-->snpfile with snps to be used in chip
+#ms2gs.snp   !    overrides ASCERTAINMENT section
+
+#SNPREGFILE !--> SNPREG FILE,: chr, pos1, pos
+#ms2gs.snpreg
+
+#INBRED_FOUNDERS !--> homozygous founders (no. sequences = no. baseinds)
+
+CM2MB !--> general cm2Mb ratio (1 by default)
+1
+
+#MAPFILE    !-->mapfile with local xover rates, default otherwise
+#ms2gs.map
+
+PRINT_SOL   !--> if present, prints snp solutions for every replicate and method
+
+PRINT_PLINK !--> if present, prints plink file every replicate
+
+PRINT_YG     !--> if present, prints phenotype, genotype and ebv file
+
+NCHR  !--> no. of chrs 
+2
+
+CHR_LENGHTS !-->chr lengths in bp, all in one line
+100000 100000
+
+H2     !-->broad heritability of the trait
+0.5
+
+ADJUST_VE   !-->var e is adjusted to match exactly expected h2
+
+#BINARY_TRAIT  !-->incidence if a threshold trait simulated
+#0.2
+
+#KILLINDS   !--> deletes marker info for those uds range in GBLUP
+#1  150
+
+NQTL    !--> no. ofqtls
+5
+
+QTL_INDS    !--> QTL parameters computed using ind idq1 to idq2
+51 100
+
+QTL_SIGN    !--> probability of derived allele being deleterious [0.5]
+0.5
+
+#SIMULATE_QTL_SNP_R2 !-->simul qtl snps with r2 nearest next left marker
+#r2
+
+#SIMULATE_QTL_SNP_FNEUTRAL !-->simul qtl freq neutral distribution
+
+#SIMULATE_QTL_SNP_FUNIFORM !-->simul qtl uniform freq frq1 frq2
+#0. 1.
+
+#QTL_POS !--> fixed qtl positions, ipos is snp order within chr
+#1 20
+#1 50
+#2 30
+#2 100
+#3 120
+
+QTL_FREQ_RANGE !-->QTL freq range on which causal snps are chosen from
+0 0.8
+
+# QTL_VA !-->specified additive variance per qtl 
+#1. 2 2 3 1
+
+#QTL_VD  !-->specified dominant variance per qtl 
+#0.2 .2 0 0 0
+
+#QTL_EFFECT_A !-->specified additive effects per qtl 
+# 1 -1 2 -1 -1.2
+
+#QTL_EFFECT_D  !-->specified dominant effects per qtl 
+0 0 0 0 0 .2
+
+#QTL_DISTRIBUTION_A  !--> QTL add effects are sampled from a distribution
+#u 20 30
+
+#QTL_DISTRIBUTION_D !--> QTL dom effects are sampled from a distribution
+#u 10 1
+
+QTL_DISTRIBUTION_VA
+g 0.42 5.4
+QTL_DISTRIBUTION_VD
+g 1 0.1
+
+ASCERTAINMENT_INDS  !-->snps are ascertained from ids ida1 to ida2
+1 50
+
+ASCERTAINMENT_MAF  !-->snps are ascertained with minimum maf
+0.2
+
+ASCERTAINMENT_P  !--> a fraction p of snpsare chosen
+0.5
+
+#SEED     !--> random seed can be overriden in command line by -seed 
+1234567  !    WARNING: does not affect ms program
+
+KMIN !--> min allele count for a snp to be considered
+1
+
+P_ERROR_CHIP !--> genotyping error
+0
+
+P_ERROR_NGS  !--> base sequencing error
+0
+
+P_ERROR_IMP  !-->imputation error
+0
+

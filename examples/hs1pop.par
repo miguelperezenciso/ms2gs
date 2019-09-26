@@ -1,0 +1,54 @@
+#MSCOMMAND
+#run this for one population in equilibrium
+#macs 1000 3000000 -i 3 -t 0.001 -r 0.001 -h 0.01 2>/dev/null | msformatter 2>/dev/null
+#run this for two populations of 500 sequences each, both pops have equal same Ne
+#macs 1000 3000000 -i 3 -t 0.001 -r 0.001 -h 0.01 -I 2 500 500 -ej 0.042 2 1  2>/dev/null | msformatter 2>/dev/null
+NOFIT
+NOBLUP
+NITER
+50
+MSFILE
+hs1pop.ms
+PEDFILE
+hs.ped
+
+# genome section
+ADJUST_VE
+H2
+0.25
+NCHR
+3
+CHR_LENGHTS
+3000000 3000000 3000000
+MAPFILE
+hs.map
+
+# qtl section
+NQTL
+1000
+QTL_INDS
+251 500
+QTL_DISTRIBUTION_VA
+g 0.42 5.4
+QTL_DISTRIBUTION_VD
+g 1 0.1
+#QTLREGFILE  !--> comment this if you want qtl unif distributed in the genome
+hs.qtlreg
+
+# snp ascertainment (no rads)
+#SNPREGFILE
+#hs.snpreg
+ASCERTAINMENT_INDS
+1 251
+ASCERTAINMENT_P
+.1
+ASCERTAINMENT_MAF
+0.10
+
+# crossvalidation
+NXVAL
+1
+PXVAL
+1
+IDXVAL
+650 700

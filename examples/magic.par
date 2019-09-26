@@ -1,0 +1,56 @@
+# MAGIC line example
+# 20 inbred lines 
+#MSCOMMAND
+#run this for 20 inbred lines
+#macs 20 3000000 -i 2 -t 0.005 -r 0.005 -h 0.01 -I 20 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.01 -ej 0.042 20 19 -ej 0.045 19 18 -ej 0.050 18 17 -ej 0.055 17 16 -ej 0.060 16 15 -ej 0.062 15 14 -ej 0.065 14 13 -ej 0.068 13 12 -ej 0.072 12 11 -ej 0.074 11 10 -ej 0.077 10 9 -ej 0.078 9 8 -ej 0.082 8 7 -ej 0.085 7 6 -ej 0.090 6 5 -ej 0.092 5 4 -ej 0.093 4 3 -ej 0.094 3 2 -ej 0.095 2 1  2>/dev/null | msformatter 2>/dev/null
+
+NOBLUP
+NOFIT
+INBRED_FOUNDERS
+NITER
+50
+MSFILE
+magic.ms
+PEDFILE
+magic.ran.ped
+#magic.ril.ped
+KILLINDS
+1 950
+
+# genome section
+H2
+0.8
+NCHR
+2
+CHR_LENGHTS
+3000000 3000000
+CM2MB
+5
+
+# qtl section
+NQTL
+20
+#--> by removing this section you mean all 20 base individuals are considered for qtl freqs
+#QTL_INDS 
+#1 20
+QTL_DISTRIBUTION_VA
+g 0.42 5.4
+QTL_DISTRIBUTION_VD
+g 1 .1
+
+# snp ascertainment
+ASCERTAINMENT_INDS
+1 20
+ASCERTAINMENT_P
+0.10
+ASCERTAINMENT_MAF
+0.10
+
+# c
+NXVAL
+10
+PXVAL
+0.10
+!--> by removing IDXVAL you allow any sample from the pedigree to be removed for xvalidation
+!IDXVAL
+!250 500
